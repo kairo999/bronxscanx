@@ -1,12 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-"""
-BRONX Multi-Scanner v6.0
-Author: BRONX_ULTRA (Telegram: @BRONX_ULTRA)
-Description: Full-featured network scanner with domain, port, CDN, tunable check, subdomain finder, and result viewer.
-"""
-
 import os
 import socket
 import threading
@@ -19,16 +13,12 @@ import ssl
 import dns.resolver
 from queue import Queue
 from datetime import datetime, timezone
-from collections import Counter
 
 from rich.console import Console
 from rich.progress import Progress, BarColumn, TimeRemainingColumn, TextColumn, MofNCompleteColumn
 from rich.panel import Panel
-from rich.prompt import IntPrompt, Prompt
+from rich.prompt import IntPrompt
 from rich.table import Table
-from rich.layout import Layout
-from rich.live import Live
-from rich.text import Text
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
@@ -50,37 +40,32 @@ def clear():
 def banner():
     console.print("""
 [bold red]
-██████╗ ██████╗  ██████╗ ███╗   ██╗██╗  ██╗
-██╔══██╗██╔══██╗██╔═══██╗████╗  ██║╚██╗██╔╝
-██████╔╝██████╔╝██║   ██║██╔██╗ ██║ ╚███╔╝ 
-██╔══██╗██╔══██╗██║   ██║██║╚██╗██║ ██╔██╗ 
-██████╔╝██║  ██║╚██████╔╝██║ ╚████║██╔╝ ██╗
-╚═════╝ ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝  ╚═╝
+███╗   ██╗███████╗██╗  ██╗ █████╗ 
+████╗  ██║██╔════╝╚██╗██╔╝██╔══██╗
+██╔██╗ ██║█████╗   ╚███╔╝ ███████║
+██║╚██╗██║██╔══╝   ██╔██╗ ██╔══██║
+██║ ╚████║███████╗██╔╝ ██╗██║  ██║
+╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝
 [/bold red]
-[bold yellow]WELCOME BRONX BUG SCANNER[/bold yellow]
-[dim]Telegram: @BRONX_ULTRA[/dim]
-    """)
+""")
 
 def main_menu():
     console.print(Panel.fit(
-        "⚡ BRONX Multi-Scanner v6.0\n[dim]Option 1: Domain Scanner | Option 2: Advanced TCP/HTTP Scanner | Option 3: CDN Finder\nOption 4: Tunable Checker | Option 5: Subdomain Finder | Option 6: View Results | Option 7: Host Response Viewer | Option 8: Help (Install) | Option 9: Exit[/dim]",
+        "⚡ NEXA Multi-Scanner\n[dim]Option 1: Domain Scanner | Option 2: Advanced TCP/HTTP Scanner | Option 3: CDN Finder | Option 4: Tunable Checker | Option 5: Subdomain Finder[/dim]",
         style="bold red",
-        title="BRONX_ULTRA"
+        title="v5.0"
     ))
     
-    console.print("\n[bold cyan]╔══════════════════════════════════════════╗[/bold cyan]")
-    console.print("[bold cyan]║               MAIN MENU                   ║[/bold cyan]")
-    console.print("[bold cyan]╠══════════════════════════════════════════╣[/bold cyan]")
-    console.print("[bold cyan]║  [1] Domain File Scanner                 ║[/bold cyan]")
-    console.print("[bold cyan]║  [2] Advanced TCP/HTTP Scanner           ║[/bold cyan]")
-    console.print("[bold cyan]║  [3] CDN Finder                          ║[/bold cyan]")
-    console.print("[bold cyan]║  [4] Tunable Checker                     ║[/bold cyan]")
-    console.print("[bold cyan]║  [5] Subdomain Finder                    ║[/bold cyan]")
-    console.print("[bold cyan]║  [6] View Results (Hosts/Server stats)   ║[/bold cyan]")
-    console.print("[bold cyan]║  [7] Host Response Viewer                ║[/bold cyan]")
-    console.print("[bold cyan]║  [8] Help (Termux Installation)          ║[/bold cyan]")
-    console.print("[bold cyan]║  [9] Exit                                ║[/bold cyan]")
-    console.print("[bold cyan]╚══════════════════════════════════════════╝[/bold cyan]")
+    console.print("\n[bold cyan]╔════════════════════════════════════╗[/bold cyan]")
+    console.print("[bold cyan]║        SELECT OPTION               ║[/bold cyan]")
+    console.print("[bold cyan]╠════════════════════════════════════╣[/bold cyan]")
+    console.print("[bold cyan]║  [1] Domain File Scanner           ║[/bold cyan]")
+    console.print("[bold cyan]║  [2] Advanced TCP/HTTP Scanner     ║[/bold cyan]")
+    console.print("[bold cyan]║  [3] CDN Finder                    ║[/bold cyan]")
+    console.print("[bold cyan]║  [4] Tunable Checker               ║[/bold cyan]")
+    console.print("[bold cyan]║  [5] Subdomain Finder (NEW)        ║[/bold cyan]")
+    console.print("[bold cyan]║  [6] Exit                          ║[/bold cyan]")
+    console.print("[bold cyan]╚════════════════════════════════════╝[/bold cyan]")
     return console.input("[bold yellow]➤ Choose option: [/bold yellow]").strip()
 
 # ================= TOOL 1: DOMAIN SCANNER =================
@@ -145,7 +130,7 @@ class DomainScanner:
 
     def run(self):
         clear()
-        console.print(Panel.fit("[bold green]BRONX DOMAIN SCANNER (httpx)[/bold green]", style="bold green"))
+        console.print(Panel.fit("[bold green]DOMAIN FILE SCANNER (httpx)[/bold green]", style="bold green"))
         
         domain_file = input("\n[?] Domain file: ").strip()
 
@@ -248,9 +233,9 @@ class AdvancedScanner:
         clear()
         banner()
         console.print(Panel.fit(
-            "⚡ BRONX Advanced Scanner\n[dim]TCP + HTTP/HTTPS HEAD + Fingerprint[/dim]",
+            "⚡ NEXA Advanced Scanner\n[dim]TCP + HTTP/HTTPS HEAD + Fingerprint[/dim]",
             style="bold red",
-            title="v6.0"
+            title="v3.3"
         ))
         
         console.print("\n[1] CIDR Scan")
@@ -490,7 +475,7 @@ class CDNFinder:
     def run(self):
         clear()
         banner()
-        console.print(Panel.fit("[bold cyan]BRONX CDN Finder[/bold cyan]\n[dim]Enter a domain to see HTTP headers and CDN provider[/dim]", style="bold cyan"))
+        console.print(Panel.fit("[bold cyan]CDN Finder[/bold cyan]\n[dim]Enter a domain to see HTTP headers and CDN provider[/dim]", style="bold cyan"))
         domain = console.input("\n[bold yellow]SNI Domain > [/bold yellow]").strip()
         if not domain:
             console.print("[red]No domain provided.[/red]")
@@ -900,7 +885,7 @@ Host: {domain}
         clear()
         banner()
         console.print(Panel.fit(
-            "[bold yellow]BRONX Tunable Checker v3.0[/bold yellow]\n[dim]Check if a domain/SNI is tunable for SSH tunneling[/dim]",
+            "[bold yellow]Tunable Checker v3.0 (FINAL)[/bold yellow]\n[dim]Check if a domain/SNI is tunable for SSH tunneling[/dim]",
             style="bold yellow"
         ))
         
@@ -1052,7 +1037,7 @@ class SubdomainFinder:
     def scan_single_domain(self):
         """Scan subdomains for a single domain"""
         clear()
-        console.print(Panel.fit("[bold cyan]BRONX SUBDOMAIN FINDER - Single Domain[/bold cyan]", style="bold cyan"))
+        console.print(Panel.fit("[bold cyan]SUBDOMAIN FINDER - Single Domain[/bold cyan]", style="bold cyan"))
         
         domain = console.input("\n[bold yellow]Enter target domain (e.g., example.com): [/bold yellow]").strip()
         
@@ -1148,7 +1133,7 @@ class SubdomainFinder:
     def scan_bulk_domains(self):
         """Scan subdomains for multiple domains from a file"""
         clear()
-        console.print(Panel.fit("[bold cyan]BRONX SUBDOMAIN FINDER - Bulk Domains[/bold cyan]", style="bold cyan"))
+        console.print(Panel.fit("[bold cyan]SUBDOMAIN FINDER - Bulk Domains[/bold cyan]", style="bold cyan"))
         
         domain_file = console.input("[bold yellow]Enter domain list file: [/bold yellow]").strip()
         
@@ -1274,7 +1259,7 @@ class SubdomainFinder:
             clear()
             banner()
             console.print(Panel.fit(
-                "[bold cyan]BRONX SUBDOMAIN FINDER[/bold cyan]\n[dim]Discover subdomains using wordlist[/dim]",
+                "[bold cyan]SUBDOMAIN FINDER[/bold cyan]\n[dim]Discover subdomains using wordlist[/dim]",
                 style="bold cyan"
             ))
             
@@ -1298,181 +1283,7 @@ class SubdomainFinder:
                 console.print("[red]Invalid option![/red]")
                 input("\nPress Enter to continue...")
 
-# ================= TOOL 6: VIEW RESULTS =================
-class ResultViewer:
-    def __init__(self):
-        self.results_file = "results.txt"
-        
-    def parse_results(self):
-        """Parse results.txt into list of dicts"""
-        if not os.path.exists(self.results_file):
-            return []
-        hosts = []
-        with open(self.results_file, 'r') as f:
-            for line in f:
-                line = line.strip()
-                if not line:
-                    continue
-                # Format: "200 | 1.2.3.4 | Cloudflare | example.com:443"
-                parts = line.split('|')
-                if len(parts) >= 4:
-                    status = parts[0].strip()
-                    ip = parts[1].strip()
-                    server = parts[2].strip()
-                    host_port = parts[3].strip()
-                    hosts.append({
-                        'status': status,
-                        'ip': ip,
-                        'server': server,
-                        'host_port': host_port
-                    })
-        return hosts
-    
-    def show_statistics(self, hosts):
-        if not hosts:
-            console.print("[yellow]No results found. Run Domain Scanner first.[/yellow]")
-            return
-        table = Table(title="Host Statistics")
-        table.add_column("Server / CDN", style="cyan")
-        table.add_column("Count", style="green")
-        server_counts = Counter([h['server'] for h in hosts])
-        for server, count in server_counts.most_common():
-            table.add_row(server, str(count))
-        console.print(table)
-        console.print(f"\n[bold]Total hosts: {len(hosts)}[/bold]")
-    
-    def show_hosts_table(self, hosts, filter_server=None):
-        if not hosts:
-            console.print("[yellow]No results found.[/yellow]")
-            return
-        filtered = hosts
-        if filter_server:
-            filtered = [h for h in hosts if filter_server.lower() in h['server'].lower()]
-        if not filtered:
-            console.print(f"[red]No hosts with server containing '{filter_server}'[/red]")
-            return
-        table = Table(title=f"Hosts (showing {len(filtered)} of {len(hosts)})")
-        table.add_column("Status", style="green")
-        table.add_column("IP", style="cyan")
-        table.add_column("Server", style="magenta")
-        table.add_column("Host:Port", style="yellow")
-        for h in filtered[:100]:  # Show first 100
-            table.add_row(h['status'], h['ip'], h['server'], h['host_port'])
-        console.print(table)
-        if len(filtered) > 100:
-            console.print(f"[dim]... and {len(filtered)-100} more[/dim]")
-    
-    def run(self):
-        clear()
-        banner()
-        console.print(Panel.fit("[bold cyan]BRONX RESULT VIEWER[/bold cyan]\n[dim]View and filter discovered hosts[/dim]", style="bold cyan"))
-        hosts = self.parse_results()
-        if not hosts:
-            console.print("[red]No results.txt found. Please run Domain Scanner first.[/red]")
-            input("\nPress Enter to return...")
-            return
-        
-        while True:
-            console.print("\n[bold]Options:[/bold]")
-            console.print("1. Show all hosts")
-            console.print("2. Show server statistics")
-            console.print("3. Filter by server (e.g., Cloudflare)")
-            console.print("4. Back to main menu")
-            choice = console.input("[cyan]Choice: [/cyan]").strip()
-            if choice == "1":
-                self.show_hosts_table(hosts)
-            elif choice == "2":
-                self.show_statistics(hosts)
-            elif choice == "3":
-                server_filter = console.input("[yellow]Enter server name (partial): [/yellow]").strip()
-                self.show_hosts_table(hosts, server_filter)
-            elif choice == "4":
-                break
-            else:
-                console.print("[red]Invalid[/red]")
-            input("\nPress Enter to continue...")
-
-# ================= TOOL 7: HOST RESPONSE VIEWER =================
-class HostResponseViewer:
-    def run(self):
-        clear()
-        banner()
-        console.print(Panel.fit("[bold cyan]BRONX HOST RESPONSE VIEWER[/bold cyan]\n[dim]Fetch HTTP headers and status from any host:port[/dim]", style="bold cyan"))
-        target = console.input("\n[bold yellow]Enter host:port (e.g., example.com:443 or 1.2.3.4:80): [/bold yellow]").strip()
-        if not target:
-            return
-        if ':' not in target:
-            console.print("[red]Please specify port (host:port)[/red]")
-            input("Press Enter...")
-            return
-        host, port_str = target.rsplit(':', 1)
-        try:
-            port = int(port_str)
-        except:
-            console.print("[red]Invalid port[/red]")
-            return
-        
-        scheme = "https" if port == 443 else "http"
-        url = f"{scheme}://{host}:{port}"
-        try:
-            with httpx.Client(verify=False, timeout=10, follow_redirects=False, http2=True) as client:
-                resp = client.get(url, headers={"User-Agent": "Mozilla/5.0"})
-                console.print(f"\n[bold green]✓ Response from {url}[/bold green]")
-                console.print(f"[bold]Status:[/bold] {resp.status_code}")
-                console.print("[bold]Headers:[/bold]")
-                table = Table(show_header=True, header_style="bold magenta")
-                table.add_column("Header", style="cyan")
-                table.add_column("Value", style="white")
-                for k, v in resp.headers.items():
-                    table.add_row(k, v)
-                console.print(table)
-                # Optionally show first 500 chars of body
-                if resp.text:
-                    console.print("[bold]Body preview:[/bold]")
-                    console.print(resp.text[:500] + ("..." if len(resp.text) > 500 else ""))
-        except Exception as e:
-            console.print(f"[red]Error: {e}[/red]")
-        input("\nPress Enter to return...")
-
-# ================= TOOL 8: HELP =================
-def show_help():
-    clear()
-    banner()
-    help_text = """
-[bold yellow]🔧 BRONX Multi-Scanner - Termux Installation Guide[/bold yellow]
-
-[bold green]1. Update packages:[/bold green]
-   pkg update && pkg upgrade -y
-
-[bold green]2. Install Python and pip:[/bold green]
-   pkg install python -y
-
-[bold green]3. Install required libraries:[/bold green]
-   pip install rich httpx dnspython urllib3
-
-[bold green]4. Run the scanner:[/bold green]
-   bronxscanx
-
-[bold green]5. For best performance, increase open file limit:[/bold green]
-   ulimit -n 4096
-
-[bold yellow]📂 Files generated:[/bold yellow]
-   - results.txt          : Domain scanner output
-   - result.txt           : Advanced scanner output
-   - tunable_results.txt  : Tunable checker logs
-   - subdomains.txt       : Subdomain findings
-
-[bold cyan]💡 Tips:[/bold cyan]
-   • Use a good wordlist for subdomain scanning (e.g., SecLists)
-   • For CIDR scans, use /24 or smaller ranges to avoid rate limits
-   • Tunable Checker helps find SSH tunneling candidates
-
-[bold red]⚠️ Disclaimer:[/bold red] Use only on targets you own or have permission to test.
-    """
-    console.print(Panel(help_text, title="Help", border_style="green", width=100))
-    input("\nPress Enter to return to menu...")
-
-# ================= MAIN FUNCTION =================
+# ================= MAIN =================
 def main():
     while True:
         clear()
@@ -1495,17 +1306,12 @@ def main():
             subdomain_finder = SubdomainFinder()
             subdomain_finder.run()
         elif choice == "6":
-            viewer = ResultViewer()
-            viewer.run()
-        elif choice == "7":
-            resp_viewer = HostResponseViewer()
-            resp_viewer.run()
-        elif choice == "8":
-            show_help()
-        elif choice == "9":
             clear()
-            console.print("\n[red]Exiting... Goodbye from BRONX![/red]")
+            console.print("\n[red]Exiting... Goodbye![/red]")
             break
         else:
-            console.print("\n[red]Invalid option! Please choose 1-9[/red]")
+            console.print("\n[red]Invalid option! Please choose 1, 2, 3, 4, 5, or 6[/red]")
             input("\n[?] Press Enter to continue...")
+
+if __name__ == "__main__":
+    main()
